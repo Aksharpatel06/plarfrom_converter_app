@@ -15,7 +15,7 @@ class AdaptiveWidget extends StatelessWidget {
     providerfalse = Provider.of<PlatfromProvider>(context, listen: false);
     providertrue = Provider.of<PlatfromProvider>(context, listen: true);
 
-    if (providertrue!.isIos) {
+    if (providertrue!.isios) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(brightness: Brightness.light),
@@ -29,7 +29,7 @@ class AdaptiveWidget extends StatelessWidget {
             ? CupertinoThemeData(brightness: Brightness.light)
             : CupertinoThemeData(brightness: Brightness.dark),
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        builder: (context, child) => HomeScreen(),
       );
     }
   }
