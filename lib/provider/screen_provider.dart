@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../modal/details_model.dart';
+
 class PlatfromProvider extends ChangeNotifier{
   bool isios =false;
   bool isdark = true;
@@ -15,6 +17,12 @@ class PlatfromProvider extends ChangeNotifier{
   ImagePicker picker = ImagePicker();
   File? imgpath;
   File? profileimgpath;
+
+  List<DetailsModel> callList =[];
+
+  TextEditingController txtname= TextEditingController();
+  TextEditingController txtnum= TextEditingController();
+  TextEditingController txtchat= TextEditingController();
 
   void changePlatfrom(bool value)
   {
@@ -59,6 +67,12 @@ class PlatfromProvider extends ChangeNotifier{
   void profileImage() async {
     XFile? images = await picker.pickImage(source: ImageSource.camera);
     profileimgpath = File(images!.path);
+    notifyListeners();
+  }
+
+  void calldetailsAdd(DetailsModel detailsModel)
+  {
+    callList.add(detailsModel);
     notifyListeners();
   }
 }

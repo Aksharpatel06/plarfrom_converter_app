@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:plarfrom_converter_app/adaptive/themeadaptive.dart';
+import 'package:plarfrom_converter_app/modal/details_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../adaptive/call_image_adaptive.dart';
@@ -61,27 +62,71 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 20,
                         ),
-                        call_details_fild(label: 'Full Name',iconData:Icons.person_outline ),
+                        call_details_fild(
+                            label: 'Full Name',
+                            textInputType: TextInputType.name,
+                            iconData: Icons.person_outline,
+                            textEditingController: providertrue!.txtname),
                         SizedBox(
                           height: 10,
                         ),
-                        call_details_fild(label:'Phone Number',iconData:Icons.phone),
+                        call_details_fild(
+                            label: 'Phone Number',
+                            textInputType: TextInputType.phone,
+                            iconData: Icons.phone,
+                            textEditingController: providertrue!.txtnum),
                         SizedBox(
                           height: 10,
                         ),
-                        call_details_fild(label:'Chat Conversation',iconData: Icons.message_outlined),
+                        call_details_fild(
+                            label: 'Chat Conversation',
+                            textInputType: TextInputType.text,
+                            iconData: Icons.message_outlined,
+                            textEditingController: providertrue!.txtchat),
                         SizedBox(
                           height: 10,
                         ),
                         DatePickerAdaptive(),
                         TimePickerAdaptive(),
-                        ElevatedButton(onPressed: () {}, child: Text('Save'))
+                        ElevatedButton(
+                          onPressed: () {
+                            DetailsModel callDetials = DetailsModel(
+                                img: providertrue!.imgpath!,
+                                name: providertrue!.txtname.text,
+                                num: int.parse(providertrue!.txtnum.text),
+                                chats: providertrue!.txtchat.text,
+                                dateTime: providertrue!.dateTime,
+                                timeOfDay: providertrue!.timeOfDay);
+                            providerfalse!.calldetailsAdd(callDetials);
+
+                            providertrue!.imgpath = null;
+                            providertrue!.txtname = TextEditingController(text: '');
+                            providertrue!.txtnum = TextEditingController(text: '');
+                            providertrue!.txtchat = TextEditingController(text: '');
+                            providertrue!.dateTime = DateTime.now();
+                            providertrue!.timeOfDay = TimeOfDay.now();
+                          },
+                          child: Text('Save'),
+                        ),
                       ],
                     ),
                   ),
                 ),
-                Icon(Icons.directions_transit),
-                Icon(Icons.directions_bike),
+                Column(
+                  children: List.generate(
+                    providertrue!.callList.length,
+                    (index) => ListTile(
+                      leading:providertrue!.callList[index].img == null? CircleAvatar(
+                        backgroundImage: AssetImage('asset/img/camera.png'),
+                      ):CircleAvatar(
+                        backgroundImage: FileImage(providertrue!.callList[index].img!),
+                      ),
+                      title: Text(providertrue!.callList[index].name),
+                      subtitle: Text(providertrue!.callList[index].chats),
+                          trailing: Icon(Icons.call),
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 10),
@@ -218,6 +263,39 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 );
+              } else if (index == 1) {
+                return Column(
+                  children: List.generate(
+                    providertrue!.callList.length,
+                        (index) => CupertinoListTile(
+                      leading:providertrue!.callList[index].img == null? CircleAvatar(
+                        backgroundImage: AssetImage('asset/img/camera.png'),
+                      ):CircleAvatar(
+                        backgroundImage: FileImage(providertrue!.callList[index].img!),
+                      ),
+                      title: Text(providertrue!.callList[index].name),
+                      subtitle: Text(providertrue!.callList[index].chats),
+                      trailing: Text(
+                          '${providertrue!.callList[index].dateTime.day} - ${providertrue!.callList[index].dateTime.month} - ${providertrue!.callList[index].dateTime.year} , ${providertrue!.callList[index].timeOfDay.hour} : ${providertrue!.callList[index].timeOfDay.minute}'),
+                    ),
+                  ),
+                );
+              } else if (index == 2) {
+                return Column(
+                  children: List.generate(
+                    providertrue!.callList.length,
+                        (index) => CupertinoListTile(
+                      leading:providertrue!.callList[index].img == null? CircleAvatar(
+                        backgroundImage: AssetImage('asset/img/camera.png'),
+                      ):CircleAvatar(
+                        backgroundImage: FileImage(providertrue!.callList[index].img!),
+                      ),
+                      title: Text(providertrue!.callList[index].name),
+                      subtitle: Text(providertrue!.callList[index].chats),
+                      trailing: Icon(CupertinoIcons.phone),
+                    ),
+                  ),
+                );
               } else if (index == 3) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(
@@ -239,14 +317,21 @@ class HomeScreen extends StatelessWidget {
     }
   }
 
-  TextFormField call_details_fild({String? label,IconData? iconData}) {
+  TextFormField call_details_fild(
+      {String? label,
+      TextInputType? textInputType,
+      IconData? iconData,
+      required TextEditingController textEditingController}) {
     return TextFormField(
-                        decoration: InputDecoration(
-                            labelText: label,
-                            prefixIcon: Icon(iconData),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(3),
-                            )),
-                      );
+      controller: textEditingController,
+      keyboardType: textInputType,
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+          labelText: label,
+          prefixIcon: Icon(iconData),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(3),
+          )),
+    );
   }
 }

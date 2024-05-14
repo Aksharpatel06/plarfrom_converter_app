@@ -8,4 +8,3 @@ PlatfromProvider? providerfalse;
 
 
 
-// Duration time = Duration(hours: timeOfDay.hour,minutes: timeOfDay.minute);
