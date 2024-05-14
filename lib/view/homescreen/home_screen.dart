@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:plarfrom_converter_app/adaptive/themeadaptive.dart';
 import 'package:provider/provider.dart';
 
+import '../../adaptive/call_image_adaptive.dart';
+import '../../adaptive/date_picker_adaptive.dart';
+import '../../adaptive/profile_adaptive.dart';
+import '../../adaptive/time_picker_adaptive.dart';
 import '../../provider/screen_provider.dart';
 import '../../utils/global_variable.dart';
 
@@ -52,90 +57,24 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Stack(
-                          children: [
-                            CircleAvatar(
-                              radius: 60,
-                            ),
-                            Positioned(
-                              top: 80,
-                              left: 80,
-                              child: Container(
-                                padding: EdgeInsets.all(2),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(width: 2),
-                                ),
-                                child: Icon(Icons.edit),
-                              ),
-                            )
-                          ],
-                        ),
+                        CallImageAdaptive(),
                         SizedBox(
                           height: 20,
                         ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: 'Full Name',
-                              prefixIcon: Icon(Icons.person_outline),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(3),
-                              )),
-                        ),
+                        call_details_fild(label: 'Full Name',iconData:Icons.person_outline ),
                         SizedBox(
                           height: 10,
                         ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: 'Phone Number',
-                              prefixIcon: Icon(Icons.phone),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(3),
-                              )),
-                        ),
+                        call_details_fild(label:'Phone Number',iconData:Icons.phone),
                         SizedBox(
                           height: 10,
                         ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: 'Chat Conversation',
-                              prefixIcon: Icon(Icons.message_outlined),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(3),
-                              )),
-                        ),
+                        call_details_fild(label:'Chat Conversation',iconData: Icons.message_outlined),
                         SizedBox(
                           height: 10,
                         ),
-                        ListTile(
-                          leading: Icon(Icons.calendar_month),
-                          onTap: () async {
-                            DateTime dateTime = await showDatePicker(
-                                  context: context,
-                                  firstDate: DateTime(1950),
-                                  lastDate: DateTime(2050),
-                                ) ??
-                                DateTime.now();
-                            providerfalse!.changedate(dateTime);
-                          },
-                          title: Text('Pick Date'),
-                          trailing: Text(
-                              "${providertrue!.dateTime.day} - ${providertrue!.dateTime.month} - ${providertrue!.dateTime.year}"),
-                        ),
-                        ListTile(
-                          leading: Icon(Icons.access_time),
-                          onTap: () async {
-                            TimeOfDay timeOfDay = await showTimePicker(
-                                  context: context,
-                                  initialTime: TimeOfDay.now(),
-                                ) ??
-                                TimeOfDay.now();
-                            providerfalse!.changetime(timeOfDay);
-                          },
-                          title: Text('Pick Time'),
-                          trailing:
-                              Text("${providertrue!.timeOfDay.hour} : ${providertrue!.timeOfDay.minute}"),
-                        ),
+                        DatePickerAdaptive(),
+                        TimePickerAdaptive(),
                         ElevatedButton(onPressed: () {}, child: Text('Save'))
                       ],
                     ),
@@ -148,77 +87,7 @@ class HomeScreen extends StatelessWidget {
                       vertical: 10.0, horizontal: 10),
                   child: Column(
                     children: [
-                      ListTile(
-                        leading: Icon(Icons.person_outline),
-                        title: Text('Profile'),
-                        subtitle: Text('Update Profile Data'),
-                        trailing: Switch(
-                          value: providertrue!.isProfile,
-                          onChanged: (value) {
-                            providerfalse!.profileshow(value);
-                          },
-                        ),
-                      ),
-                      (providertrue!.isProfile)
-                          ? Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Stack(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 60,
-                                        ),
-                                        Positioned(
-                                          top: 80,
-                                          left: 80,
-                                          child: Container(
-                                            padding: EdgeInsets.all(2),
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              border: Border.all(width: 2),
-                                            ),
-                                            child: Icon(Icons.edit),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration.collapsed(
-                                          hintText: 'Enter your Name...'),
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    TextFormField(
-                                        decoration: InputDecoration.collapsed(
-                                            hintText: 'Enter your Bio..')),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        ElevatedButton(
-                                            onPressed: () {},
-                                            child: Text('Save')),
-                                        ElevatedButton(
-                                            onPressed: () {},
-                                            child: Text('Clear')),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
-                          : Container(),
+                      ProfileAdaptive(),
                       ThemeModeScreen(),
                     ],
                   ),
@@ -241,157 +110,143 @@ class HomeScreen extends StatelessWidget {
         ),
         child: SafeArea(
           child: CupertinoTabScaffold(
-              tabBar: CupertinoTabBar(items: [
-                BottomNavigationBarItem(icon: Icon(CupertinoIcons.person_badge_plus),),
-                BottomNavigationBarItem(icon: Icon(CupertinoIcons.chat_bubble,size: 25,),label: 'CHATS'),
-                BottomNavigationBarItem(icon: Icon(CupertinoIcons.phone,size: 25,),label: 'CALLS'),
-                BottomNavigationBarItem(icon: Icon(CupertinoIcons.settings),label: 'SETTINGS'),
-              ]), tabBuilder: (context, index) {
-                if(index==0)
-                  {
-                    return Padding(
-                      padding:
+            tabBar: CupertinoTabBar(items: [
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.person_badge_plus),
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    CupertinoIcons.chat_bubble,
+                    size: 25,
+                  ),
+                  label: 'CHATS'),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    CupertinoIcons.phone,
+                    size: 25,
+                  ),
+                  label: 'CALLS'),
+              BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.settings), label: 'SETTINGS'),
+            ]),
+            tabBuilder: (context, index) {
+              if (index == 0) {
+                return Padding(
+                  padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CallImageAdaptive(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
                           children: [
-                            Stack(
-                              children: [
-                                CircleAvatar(
-                                  radius: 60,
+                            Icon(CupertinoIcons.person),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: CupertinoTextField(
+                                placeholder: 'Full Name',
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  border: Border.all(width: 0.5),
+                                  borderRadius: BorderRadius.circular(3),
                                 ),
-                                Positioned(
-                                  top: 80,
-                                  left: 80,
-                                  child: Container(
-                                    padding: EdgeInsets.all(2),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(width: 2),
-                                    ),
-                                    child: Icon(Icons.edit),
-                                  ),
-                                )
-                              ],
+                              ),
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              children: [
-                                Icon(CupertinoIcons.person),
-                                SizedBox(width: 10,),
-                                Expanded(
-                                  child: CupertinoTextField(
-                                    placeholder: 'Full Name',
-                                    padding: EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(width: 0.5),
-                                      borderRadius: BorderRadius.circular(3),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              children: [
-                                Icon(CupertinoIcons.phone),
-                                SizedBox(width: 10,),
-                                Expanded(
-                                  child: CupertinoTextField(
-                                    padding: EdgeInsets.all(10),
-                                    placeholder: 'Phone number',
-                                    decoration: BoxDecoration(
-                                      border: Border.all(width: 0.5),
-                                      borderRadius: BorderRadius.circular(3),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              children: [
-                                Icon(CupertinoIcons.chat_bubble_text),
-                                SizedBox(width: 10,),
-                                Expanded(
-                                  child: CupertinoTextField(
-                                    padding: EdgeInsets.all(10),
-                                    placeholder: 'Chat Conversation',
-                                    decoration: BoxDecoration(
-                                      border: Border.all(width: 0.5),
-                                      borderRadius: BorderRadius.circular(3),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            CupertinoListTile(
-                              padding: EdgeInsets.zero,
-                              leading: Icon(CupertinoIcons.calendar),
-                              onTap: () async {
-                                showCupertinoModalPopup(context: context, builder: (context) {
-                                  return Container(
-                                    height: 200,
-                                    decoration:  BoxDecoration(
-                                      color: providertrue!.isdark ? CupertinoColors.white:CupertinoColors.black,
-                                    ),
-                                    child: CupertinoDatePicker(onDateTimeChanged: (value) {
-                                      providerfalse!.changedate(value);
-                                    },),
-                                  );
-                                },);
-
-                              },
-                              title: Text('Pick Date'),
-                              trailing: Text(
-                                  "${providertrue!.dateTime.day} - ${providertrue!.dateTime.month} - ${providertrue!.dateTime.year}"),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            CupertinoListTile(
-                              padding: EdgeInsets.zero,
-                              leading: Icon(CupertinoIcons.time),
-                              onTap: () async {
-                                showCupertinoModalPopup(context: context, builder: (context) {
-                                  return Container(
-                                    height: 200,
-                                    decoration:  BoxDecoration(
-                                      color: providertrue!.isdark ? CupertinoColors.white:CupertinoColors.black,
-                                    ),
-                                    child: CupertinoTimerPicker(onTimerDurationChanged: (value) {
-                                      providerfalse!.changeCupertinotime(value);
-                                    },)
-                                  );
-                                },);
-                              },
-                              title: Text('Pick Time'),
-                              trailing: Text(
-                                  "${providertrue!.duration.inHours} - ${providertrue!.duration.inMinutes}"),
-                            ),
-                            // ElevatedButton(onPressed: () {}, child: Text('Save'))
                           ],
                         ),
-                      ),
-                    );
-                  }
-                else
-                  {
-                    return Text('hello');
-                  }
-              },),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Icon(CupertinoIcons.phone),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: CupertinoTextField(
+                                padding: EdgeInsets.all(10),
+                                placeholder: 'Phone number',
+                                decoration: BoxDecoration(
+                                  border: Border.all(width: 0.5),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Icon(CupertinoIcons.chat_bubble_text),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: CupertinoTextField(
+                                padding: EdgeInsets.all(10),
+                                placeholder: 'Chat Conversation',
+                                decoration: BoxDecoration(
+                                  border: Border.all(width: 0.5),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        DatePickerAdaptive(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TimePickerAdaptive(),
+                        CupertinoButton(
+                          child: Text('Save'),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              } else if (index == 3) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 10),
+                  child: Column(
+                    children: [
+                      ProfileAdaptive(),
+                      ThemeModeScreen(),
+                    ],
+                  ),
+                );
+              } else {
+                return Text('hello');
+              }
+            },
+          ),
         ),
       );
     }
+  }
+
+  TextFormField call_details_fild({String? label,IconData? iconData}) {
+    return TextFormField(
+                        decoration: InputDecoration(
+                            labelText: label,
+                            prefixIcon: Icon(iconData),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                            )),
+                      );
   }
 }

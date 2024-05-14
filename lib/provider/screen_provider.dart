@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PlatfromProvider extends ChangeNotifier{
   bool isios =false;
@@ -8,7 +11,10 @@ class PlatfromProvider extends ChangeNotifier{
 
   DateTime dateTime = DateTime.now();
   TimeOfDay timeOfDay = TimeOfDay.now();
-  Duration duration = Duration(hours: DateTime.now().hour,minutes: DateTime.now().minute) ;
+
+  ImagePicker picker = ImagePicker();
+  File? imgpath;
+  File? profileimgpath;
 
   void changePlatfrom(bool value)
   {
@@ -39,8 +45,20 @@ class PlatfromProvider extends ChangeNotifier{
     this.timeOfDay = timeOfDay;
     notifyListeners();
   }
-  void  changeCupertinotime(Duration duration)
+  void  changeCupertinotime(DateTime dateTime)
   {
-    this.duration = duration;
+    this.timeOfDay = TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
+  }
+
+  void setImage() async {
+    XFile? images = await picker.pickImage(source: ImageSource.camera);
+    imgpath = File(images!.path);
+    notifyListeners();
+  }
+
+  void profileImage() async {
+    XFile? images = await picker.pickImage(source: ImageSource.camera);
+    profileimgpath = File(images!.path);
+    notifyListeners();
   }
 }

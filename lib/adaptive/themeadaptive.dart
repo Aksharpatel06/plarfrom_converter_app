@@ -21,17 +21,15 @@ class ThemeModeScreen extends StatelessWidget {
         ),
       );
     } else {
-      return Center(
-        child: Row(
-          children: [
-            Text('Theme mode:'),
-            CupertinoSwitch(
-              value: providertrue!.isdark,
-              onChanged: (value) {
-                providerfalse!.changeColor(value);
-              },
-            )
-          ],
+      return CupertinoListTile(
+        leading: Icon(CupertinoIcons.sun_max),
+        title: Text('Theme'),
+        subtitle: Text('Change Theme'),
+        trailing: CupertinoSwitch(
+          value: providertrue!.isdark,
+          onChanged: (value) {
+            providerfalse!.changeColor(value);
+          },
         ),
       );
     }

@@ -29,7 +29,7 @@ class AdaptiveWidget extends StatelessWidget {
             ? CupertinoThemeData(brightness: Brightness.light)
             : CupertinoThemeData(brightness: Brightness.dark),
         debugShowCheckedModeBanner: false,
-        builder: (context, child) => HomeScreen(),
+        home:  HomeScreen(),
       );
     }
   }
