@@ -9,6 +9,8 @@ TextFormField call_details_field(
     controller: textEditingController,
     keyboardType: textInputType,
     textInputAction: TextInputAction.next,
+    validator: (value) {
+    },
     decoration: InputDecoration(
         labelText: label,
         prefixIcon: Icon(iconData),

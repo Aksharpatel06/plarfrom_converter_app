@@ -7,7 +7,7 @@ import '../modal/details_model.dart';
 
 class PlatfromProvider extends ChangeNotifier{
   bool isios =false;
-  bool isdark = true;
+  bool isdark = false;
   bool isProfile = false;
 
   DateTime dateTime = DateTime.now();

@@ -52,8 +52,7 @@ class HomeScreen extends StatelessWidget {
             child: TabBarView(
               children: [
                 const Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,13 +81,32 @@ class HomeScreen extends StatelessWidget {
                             ),
                       title: Text(providertrue!.callList[index].name),
                       subtitle: Text(providertrue!.callList[index].chats),
+                      trailing: Text(
+                          '${providertrue!.callList[index].dateTime.day} - ${providertrue!.callList[index].dateTime.month} - ${providertrue!.callList[index].dateTime.year} , ${providertrue!.callList[index].timeOfDay.hour} : ${providertrue!.callList[index].timeOfDay.minute}'),
+                    ),
+                  ),
+                ),
+                Column(
+                  children: List.generate(
+                    providertrue!.callList.length,
+                    (index) => ListTile(
+                      leading: providertrue!.callList[index].img == null
+                          ? const CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('asset/img/camera.png'),
+                            )
+                          : CircleAvatar(
+                              backgroundImage:
+                                  FileImage(providertrue!.callList[index].img!),
+                            ),
+                      title: Text(providertrue!.callList[index].name),
+                      subtitle: Text(providertrue!.callList[index].chats),
                       trailing: const Icon(Icons.call),
                     ),
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 10),
+                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                   child: Column(
                     children: [
                       ProfileAdaptive(),
@@ -136,8 +154,7 @@ class HomeScreen extends StatelessWidget {
             tabBuilder: (context, index) {
               if (index == 0) {
                 return const Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -197,8 +214,7 @@ class HomeScreen extends StatelessWidget {
                 );
               } else if (index == 3) {
                 return const Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 10),
+                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                   child: Column(
                     children: [
                       ProfileAdaptive(),

@@ -16,7 +16,7 @@ class CallSaveAdaptive extends StatelessWidget {
             DetailsModel callDetials = DetailsModel(
                 img: providertrue!.imgpath!,
                 name: providertrue!.txtname.text,
-                num: int.parse(providertrue!.txtnum.text),
+                num: providertrue!.txtnum.text,
                 chats: providertrue!.txtchat.text,
                 dateTime: providertrue!.dateTime,
                 timeOfDay: providertrue!.timeOfDay);
@@ -41,7 +41,7 @@ class CallSaveAdaptive extends StatelessWidget {
           DetailsModel callDetials = DetailsModel(
               img: providertrue!.imgpath!,
               name: providertrue!.txtname.text,
-              num: int.parse(providertrue!.txtnum.text),
+              num: providertrue!.txtnum.text,
               chats: providertrue!.txtchat.text,
               dateTime: providertrue!.dateTime,
               timeOfDay: providertrue!.timeOfDay);

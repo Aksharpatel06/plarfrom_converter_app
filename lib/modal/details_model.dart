@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class DetailsModel {
   File? img;
   String name;
-  int num;
+  String num;
   String chats;
   DateTime dateTime;
   TimeOfDay timeOfDay;

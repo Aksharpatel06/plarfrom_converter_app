@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/screen_provider.dart';
 import '../utils/global_variable.dart';
 
 class ThemeModeScreen extends StatelessWidget {
@@ -8,6 +10,8 @@ class ThemeModeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    providerfalse = Provider.of<PlatfromProvider>(context, listen: false);
+    providertrue = Provider.of<PlatfromProvider>(context, listen: true);
     if (providertrue!.isios) {
       return ListTile(
         leading: Icon(Icons.sunny),
