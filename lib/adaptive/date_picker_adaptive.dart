@@ -41,6 +41,7 @@ class DatePickerAdaptive extends StatelessWidget {
                           : CupertinoColors.black,
                     ),
                     child: CupertinoDatePicker(
+                      mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged: (value) {
                         providerfalse!.changedate(value);
                       },

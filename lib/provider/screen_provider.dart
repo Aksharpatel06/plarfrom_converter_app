@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -55,7 +54,7 @@ class PlatfromProvider extends ChangeNotifier{
   }
   void  changeCupertinotime(DateTime dateTime)
   {
-    this.timeOfDay = TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
+    timeOfDay = TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
   }
 
   void setImage() async {

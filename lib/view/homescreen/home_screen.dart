@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:plarfrom_converter_app/adaptive/themeadaptive.dart';
-import 'package:plarfrom_converter_app/modal/details_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../adaptive/call_field_adaptive.dart';
 import '../../adaptive/call_image_adaptive.dart';
+import '../../adaptive/call_save_adaptive.dart';
 import '../../adaptive/date_picker_adaptive.dart';
 import '../../adaptive/profile_adaptive.dart';
 import '../../adaptive/time_picker_adaptive.dart';
@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
         length: 4,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Platfrom Converter'),
+            title: const Text('Platfrom Converter'),
             actions: [
               Switch(
                 value: providertrue!.isios,
@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                 },
               )
             ],
-            bottom: TabBar(
+            bottom: const TabBar(
               tabs: [
                 Tab(
                   icon: Icon(Icons.person_add_alt),
@@ -51,63 +51,18 @@ class HomeScreen extends StatelessWidget {
           body: SafeArea(
             child: TabBarView(
               children: [
-                Padding(
+                const Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CallImageAdaptive(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        call_details_fild(
-                            label: 'Full Name',
-                            textInputType: TextInputType.name,
-                            iconData: Icons.person_outline,
-                            textEditingController: providertrue!.txtname),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        call_details_fild(
-                            label: 'Phone Number',
-                            textInputType: TextInputType.phone,
-                            iconData: Icons.phone,
-                            textEditingController: providertrue!.txtnum),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        call_details_fild(
-                            label: 'Chat Conversation',
-                            textInputType: TextInputType.text,
-                            iconData: Icons.message_outlined,
-                            textEditingController: providertrue!.txtchat),
-                        SizedBox(
-                          height: 10,
-                        ),
+                        CallFieldAdaptive(),
                         DatePickerAdaptive(),
                         TimePickerAdaptive(),
-                        ElevatedButton(
-                          onPressed: () {
-                            DetailsModel callDetials = DetailsModel(
-                                img: providertrue!.imgpath!,
-                                name: providertrue!.txtname.text,
-                                num: int.parse(providertrue!.txtnum.text),
-                                chats: providertrue!.txtchat.text,
-                                dateTime: providertrue!.dateTime,
-                                timeOfDay: providertrue!.timeOfDay);
-                            providerfalse!.calldetailsAdd(callDetials);
-
-                            providertrue!.imgpath = null;
-                            providertrue!.txtname = TextEditingController(text: '');
-                            providertrue!.txtnum = TextEditingController(text: '');
-                            providertrue!.txtchat = TextEditingController(text: '');
-                            providertrue!.dateTime = DateTime.now();
-                            providertrue!.timeOfDay = TimeOfDay.now();
-                          },
-                          child: Text('Save'),
-                        ),
+                        CallSaveAdaptive(),
                       ],
                     ),
                   ),
@@ -116,19 +71,23 @@ class HomeScreen extends StatelessWidget {
                   children: List.generate(
                     providertrue!.callList.length,
                     (index) => ListTile(
-                      leading:providertrue!.callList[index].img == null? CircleAvatar(
-                        backgroundImage: AssetImage('asset/img/camera.png'),
-                      ):CircleAvatar(
-                        backgroundImage: FileImage(providertrue!.callList[index].img!),
-                      ),
+                      leading: providertrue!.callList[index].img == null
+                          ? const CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('asset/img/camera.png'),
+                            )
+                          : CircleAvatar(
+                              backgroundImage:
+                                  FileImage(providertrue!.callList[index].img!),
+                            ),
                       title: Text(providertrue!.callList[index].name),
                       subtitle: Text(providertrue!.callList[index].chats),
-                          trailing: Icon(Icons.call),
+                      trailing: const Icon(Icons.call),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
+                const Padding(
+                  padding: EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 10),
                   child: Column(
                     children: [
@@ -145,7 +104,7 @@ class HomeScreen extends StatelessWidget {
     } else {
       return CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
-          middle: Text('Platfrom Converter'),
+          middle: const Text('Platfrom Converter'),
           trailing: CupertinoSwitch(
             value: providertrue!.isios,
             onChanged: (value) {
@@ -155,7 +114,7 @@ class HomeScreen extends StatelessWidget {
         ),
         child: SafeArea(
           child: CupertinoTabScaffold(
-            tabBar: CupertinoTabBar(items: [
+            tabBar: CupertinoTabBar(items: const [
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.person_badge_plus),
               ),
@@ -176,89 +135,21 @@ class HomeScreen extends StatelessWidget {
             ]),
             tabBuilder: (context, index) {
               if (index == 0) {
-                return Padding(
+                return const Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CallImageAdaptive(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Icon(CupertinoIcons.person),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: CupertinoTextField(
-                                placeholder: 'Full Name',
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  border: Border.all(width: 0.5),
-                                  borderRadius: BorderRadius.circular(3),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Icon(CupertinoIcons.phone),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: CupertinoTextField(
-                                padding: EdgeInsets.all(10),
-                                placeholder: 'Phone number',
-                                decoration: BoxDecoration(
-                                  border: Border.all(width: 0.5),
-                                  borderRadius: BorderRadius.circular(3),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Icon(CupertinoIcons.chat_bubble_text),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: CupertinoTextField(
-                                padding: EdgeInsets.all(10),
-                                placeholder: 'Chat Conversation',
-                                decoration: BoxDecoration(
-                                  border: Border.all(width: 0.5),
-                                  borderRadius: BorderRadius.circular(3),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        CallFieldAdaptive(),
                         DatePickerAdaptive(),
                         SizedBox(
                           height: 20,
                         ),
                         TimePickerAdaptive(),
-                        CupertinoButton(
-                          child: Text('Save'),
-                          onPressed: () {},
-                        ),
+                        CallSaveAdaptive(),
                       ],
                     ),
                   ),
@@ -267,12 +158,16 @@ class HomeScreen extends StatelessWidget {
                 return Column(
                   children: List.generate(
                     providertrue!.callList.length,
-                        (index) => CupertinoListTile(
-                      leading:providertrue!.callList[index].img == null? CircleAvatar(
-                        backgroundImage: AssetImage('asset/img/camera.png'),
-                      ):CircleAvatar(
-                        backgroundImage: FileImage(providertrue!.callList[index].img!),
-                      ),
+                    (index) => CupertinoListTile(
+                      leading: providertrue!.callList[index].img == null
+                          ? const CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('asset/img/camera.png'),
+                            )
+                          : CircleAvatar(
+                              backgroundImage:
+                                  FileImage(providertrue!.callList[index].img!),
+                            ),
                       title: Text(providertrue!.callList[index].name),
                       subtitle: Text(providertrue!.callList[index].chats),
                       trailing: Text(
@@ -284,21 +179,25 @@ class HomeScreen extends StatelessWidget {
                 return Column(
                   children: List.generate(
                     providertrue!.callList.length,
-                        (index) => CupertinoListTile(
-                      leading:providertrue!.callList[index].img == null? CircleAvatar(
-                        backgroundImage: AssetImage('asset/img/camera.png'),
-                      ):CircleAvatar(
-                        backgroundImage: FileImage(providertrue!.callList[index].img!),
-                      ),
+                    (index) => CupertinoListTile(
+                      leading: providertrue!.callList[index].img == null
+                          ? const CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('asset/img/camera.png'),
+                            )
+                          : CircleAvatar(
+                              backgroundImage:
+                                  FileImage(providertrue!.callList[index].img!),
+                            ),
                       title: Text(providertrue!.callList[index].name),
                       subtitle: Text(providertrue!.callList[index].chats),
-                      trailing: Icon(CupertinoIcons.phone),
+                      trailing: const Icon(CupertinoIcons.phone),
                     ),
                   ),
                 );
               } else if (index == 3) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
+                return const Padding(
+                  padding: EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 10),
                   child: Column(
                     children: [
@@ -308,30 +207,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                 );
               } else {
-                return Text('hello');
+                return const Text('hello');
               }
             },
           ),
         ),
       );
     }
-  }
-
-  TextFormField call_details_fild(
-      {String? label,
-      TextInputType? textInputType,
-      IconData? iconData,
-      required TextEditingController textEditingController}) {
-    return TextFormField(
-      controller: textEditingController,
-      keyboardType: textInputType,
-      textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-          labelText: label,
-          prefixIcon: Icon(iconData),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(3),
-          )),
-    );
   }
 }
