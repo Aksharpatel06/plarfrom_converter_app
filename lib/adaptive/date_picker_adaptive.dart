@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:plarfrom_converter_app/utils/global_variable.dart';
 import 'package:provider/provider.dart';
 
+import '../provider/profile_provider.dart';
 import '../provider/screen_provider.dart';
 
 class DatePickerAdaptive extends StatelessWidget {
@@ -12,6 +13,9 @@ class DatePickerAdaptive extends StatelessWidget {
   Widget build(BuildContext context) {
     providerfalse = Provider.of<PlatfromProvider>(context, listen: false);
     providertrue = Provider.of<PlatfromProvider>(context, listen: true);
+
+    profileProviderfalse = Provider.of<ProfileProvider>(context, listen: false);
+    profileProvidertrue = Provider.of<ProfileProvider>(context, listen: true);
     if(providertrue!.isios)
       {
         return ListTile(
@@ -41,7 +45,7 @@ class DatePickerAdaptive extends StatelessWidget {
                   return Container(
                     height: 200,
                     decoration: BoxDecoration(
-                      color: providertrue!.isdark
+                      color: profileProvidertrue!.isdark
                           ? CupertinoColors.white
                           : CupertinoColors.black,
                     ),

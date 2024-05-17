@@ -5,10 +5,10 @@ import 'package:image_picker/image_picker.dart';
 
 import '../modal/details_model.dart';
 
-class PlatfromProvider extends ChangeNotifier{
-  bool isios =false;
-  bool isdark = false;
-  bool isProfile = false;
+class PlatfromProvider extends ChangeNotifier {
+  bool isios = false;
+  bool isupdate = false;
+  int updateindex = 0;
 
   DateTime dateTime = DateTime.now();
   TimeOfDay timeOfDay = TimeOfDay.now();
@@ -17,43 +17,28 @@ class PlatfromProvider extends ChangeNotifier{
   File? imgpath;
   File? profileimgpath;
 
-  List<DetailsModel> callList =[];
+  List<DetailsModel> callList = [];
 
-  TextEditingController txtname= TextEditingController();
-  TextEditingController txtnum= TextEditingController();
-  TextEditingController txtchat= TextEditingController();
+  TextEditingController txtname = TextEditingController(text: 'Zimil');
+  TextEditingController txtnum = TextEditingController(text: '9562596255');
+  TextEditingController txtchat = TextEditingController(text: 'hello brother');
 
-  void changePlatfrom(bool value)
-  {
+  void changePlatfrom(bool value) {
     isios = value;
     notifyListeners();
   }
 
-  void changeColor(bool value)
-  {
-    isdark=value;
-    notifyListeners();
-  }
-
-  void profileshow(bool value)
-  {
-    isProfile = value;
-    notifyListeners();
-  }
-
-  void changedate(DateTime dateTime)
-  {
+  void changedate(DateTime dateTime) {
     this.dateTime = dateTime;
     notifyListeners();
   }
 
-  void changetime(TimeOfDay timeOfDay)
-  {
+  void changetime(TimeOfDay timeOfDay) {
     this.timeOfDay = timeOfDay;
     notifyListeners();
   }
-  void  changeCupertinotime(DateTime dateTime)
-  {
+
+  void changeCupertinotime(DateTime dateTime) {
     timeOfDay = TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
   }
 
@@ -63,15 +48,38 @@ class PlatfromProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  void profileImage() async {
-    XFile? images = await picker.pickImage(source: ImageSource.camera);
-    profileimgpath = File(images!.path);
+  void calldetailsAdd(DetailsModel detailsModel) {
+    callList.add(detailsModel);
     notifyListeners();
   }
 
-  void calldetailsAdd(DetailsModel detailsModel)
-  {
-    callList.add(detailsModel);
+  void removedetails(int index) {
+    callList.removeAt(index);
+    notifyListeners();
+  }
+
+  void editdetails({required int detailsIndex, int? index}) {
+    if (detailsIndex >= 0 && detailsIndex < callList.length) {
+      updateindex = detailsIndex;
+      isupdate = true;
+      imgpath = callList[detailsIndex].img;
+      txtname = TextEditingController(text: callList[detailsIndex].name);
+      txtchat = TextEditingController(text: callList[detailsIndex].chats);
+      txtnum = TextEditingController(text: callList[detailsIndex].num);
+      dateTime = callList[detailsIndex].dateTime;
+      timeOfDay = callList[detailsIndex].timeOfDay;
+      notifyListeners();
+    }
+  }
+
+  void calleditdetails() {
+    callList[updateindex].img = imgpath;
+    callList[updateindex].name = txtname.text;
+    callList[updateindex].num = txtnum.text;
+    callList[updateindex].chats = txtchat.text;
+    callList[updateindex].dateTime = dateTime;
+    callList[updateindex].timeOfDay = timeOfDay;
+    isupdate = false;
     notifyListeners();
   }
 }

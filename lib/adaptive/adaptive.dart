@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:plarfrom_converter_app/view/homescreen/home_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../provider/profile_provider.dart';
 import '../provider/screen_provider.dart';
 import '../utils/global_variable.dart';
 
@@ -15,17 +16,20 @@ class AdaptiveWidget extends StatelessWidget {
     providerfalse = Provider.of<PlatfromProvider>(context, listen: false);
     providertrue = Provider.of<PlatfromProvider>(context, listen: true);
 
+    profileProviderfalse = Provider.of<ProfileProvider>(context, listen: false);
+    profileProvidertrue = Provider.of<ProfileProvider>(context, listen: true);
+
     if (providertrue!.isios) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(brightness: Brightness.light),
         darkTheme: ThemeData(brightness: Brightness.dark),
-        themeMode: providertrue!.isdark ? ThemeMode.light : ThemeMode.dark,
+        themeMode: profileProvidertrue!.isdark ? ThemeMode.light : ThemeMode.dark,
         home: HomeScreen(),
       );
     } else {
       return CupertinoApp(
-        theme: providertrue!.isdark
+        theme: profileProvidertrue!.isdark
             ? CupertinoThemeData(brightness: Brightness.light)
             : CupertinoThemeData(brightness: Brightness.dark),
         debugShowCheckedModeBanner: false,

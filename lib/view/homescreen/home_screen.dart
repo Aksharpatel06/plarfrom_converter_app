@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:plarfrom_converter_app/adaptive/themeadaptive.dart';
 import 'package:provider/provider.dart';
 
+import '../../adaptive/call_details_add_adaptive.dart';
 import '../../adaptive/call_field_adaptive.dart';
 import '../../adaptive/call_image_adaptive.dart';
 import '../../adaptive/call_save_adaptive.dart';
+import '../../adaptive/chats_details.dart';
 import '../../adaptive/date_picker_adaptive.dart';
 import '../../adaptive/profile_adaptive.dart';
 import '../../adaptive/time_picker_adaptive.dart';
@@ -51,41 +53,8 @@ class HomeScreen extends StatelessWidget {
           body: SafeArea(
             child: TabBarView(
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CallImageAdaptive(),
-                        CallFieldAdaptive(),
-                        DatePickerAdaptive(),
-                        TimePickerAdaptive(),
-                        CallSaveAdaptive(),
-                      ],
-                    ),
-                  ),
-                ),
-                Column(
-                  children: List.generate(
-                    providertrue!.callList.length,
-                    (index) => ListTile(
-                      leading: providertrue!.callList[index].img == null
-                          ? const CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('asset/img/camera.png'),
-                            )
-                          : CircleAvatar(
-                              backgroundImage:
-                                  FileImage(providertrue!.callList[index].img!),
-                            ),
-                      title: Text(providertrue!.callList[index].name),
-                      subtitle: Text(providertrue!.callList[index].chats),
-                      trailing: Text(
-                          '${providertrue!.callList[index].dateTime.day} - ${providertrue!.callList[index].dateTime.month} - ${providertrue!.callList[index].dateTime.year} , ${providertrue!.callList[index].timeOfDay.hour} : ${providertrue!.callList[index].timeOfDay.minute}'),
-                    ),
-                  ),
-                ),
+                const CallDetailsAddScreenAdapatiev(),
+                const ChatsDetailsAdaptive(),
                 Column(
                   children: List.generate(
                     providertrue!.callList.length,
@@ -153,45 +122,9 @@ class HomeScreen extends StatelessWidget {
             ]),
             tabBuilder: (context, index) {
               if (index == 0) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CallImageAdaptive(),
-                        CallFieldAdaptive(),
-                        DatePickerAdaptive(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TimePickerAdaptive(),
-                        CallSaveAdaptive(),
-                      ],
-                    ),
-                  ),
-                );
+                return const CallDetailsAddScreenAdapatiev();
               } else if (index == 1) {
-                return Column(
-                  children: List.generate(
-                    providertrue!.callList.length,
-                    (index) => CupertinoListTile(
-                      leading: providertrue!.callList[index].img == null
-                          ? const CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('asset/img/camera.png'),
-                            )
-                          : CircleAvatar(
-                              backgroundImage:
-                                  FileImage(providertrue!.callList[index].img!),
-                            ),
-                      title: Text(providertrue!.callList[index].name),
-                      subtitle: Text(providertrue!.callList[index].chats),
-                      trailing: Text(
-                          '${providertrue!.callList[index].dateTime.day} - ${providertrue!.callList[index].dateTime.month} - ${providertrue!.callList[index].dateTime.year} , ${providertrue!.callList[index].timeOfDay.hour} : ${providertrue!.callList[index].timeOfDay.minute}'),
-                    ),
-                  ),
-                );
+                return const ChatsDetailsAdaptive();
               } else if (index == 2) {
                 return Column(
                   children: List.generate(

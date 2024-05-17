@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plarfrom_converter_app/adaptive/adaptive.dart';
+import 'package:plarfrom_converter_app/provider/profile_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'provider/screen_provider.dart';
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (context) => PlatfromProvider(),
-      )
+      ),
+      ChangeNotifierProvider(create: (context) => ProfileProvider(),)
     ], child: AdaptiveWidget());
   }
 }

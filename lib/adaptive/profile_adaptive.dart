@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:plarfrom_converter_app/provider/profile_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/screen_provider.dart';
@@ -12,6 +13,9 @@ class ProfileAdaptive extends StatelessWidget {
   Widget build(BuildContext context) {
     providerfalse = Provider.of<PlatfromProvider>(context, listen: false);
     providertrue = Provider.of<PlatfromProvider>(context, listen: true);
+
+    profileProviderfalse = Provider.of<ProfileProvider>(context, listen: false);
+    profileProvidertrue = Provider.of<ProfileProvider>(context, listen: true);
     if (providertrue!.isios) {
       return Column(
         children: [
@@ -20,13 +24,13 @@ class ProfileAdaptive extends StatelessWidget {
             title: Text('Profile'),
             subtitle: Text('Update Profile Data'),
             trailing: Switch(
-              value: providertrue!.isProfile,
+              value: profileProvidertrue!.isProfile,
               onChanged: (value) {
-                providerfalse!.profileshow(value);
+                profileProviderfalse!.profileshow(value);
               },
             ),
           ),
-          (providertrue!.isProfile)
+          (profileProvidertrue!.isProfile)
               ? Padding(
             padding: const EdgeInsets.symmetric(
                 vertical: 10, horizontal: 10),
@@ -36,12 +40,12 @@ class ProfileAdaptive extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      providerfalse!.profileImage();
+                      profileProviderfalse!.profileImage();
                     },
-                    child: (providertrue!.profileimgpath != null)
+                    child: (profileProvidertrue!.profileimgpath != null)
                         ? CircleAvatar(
                         radius: 60,
-                        backgroundImage: FileImage(providertrue!.profileimgpath!))
+                        backgroundImage: FileImage(profileProvidertrue!.profileimgpath!))
                         : CircleAvatar(
                         radius: 60,
                         backgroundImage: AssetImage('asset/img/camera.png')),
@@ -89,13 +93,13 @@ class ProfileAdaptive extends StatelessWidget {
             title: Text('Profile'),
             subtitle: Text('Update Profile Data'),
             trailing: CupertinoSwitch(
-              value: providertrue!.isProfile,
+              value: profileProvidertrue!.isProfile,
               onChanged: (value) {
-                providerfalse!.profileshow(value);
+                profileProviderfalse!.profileshow(value);
               },
             ),
           ),
-          (providertrue!.isProfile)
+          (profileProvidertrue!.isProfile)
               ? Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -105,11 +109,11 @@ class ProfileAdaptive extends StatelessWidget {
                       children: [
                         CupertinoButton(
                           onPressed: () {
-                            providerfalse!.profileImage();
+                            profileProviderfalse!.profileImage();
                           },
-                          child: (providertrue!.profileimgpath != null)
+                          child: (profileProvidertrue!.profileimgpath != null)
                               ? CircleAvatar(
-                              radius: 60, backgroundImage: FileImage(providertrue!.profileimgpath!))
+                              radius: 60, backgroundImage: FileImage(profileProvidertrue!.profileimgpath!))
                               : CircleAvatar(
                               radius: 60,
                               backgroundImage: AssetImage('asset/img/camera.png')),

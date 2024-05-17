@@ -13,51 +13,52 @@ class CallSaveAdaptive extends StatelessWidget {
   Widget build(BuildContext context) {
     providerfalse = Provider.of<PlatfromProvider>(context, listen: false);
     providertrue = Provider.of<PlatfromProvider>(context, listen: true);
-    if(providertrue!.isios)
-      {
-        return ElevatedButton(
-          onPressed: () {
+    if (providertrue!.isios) {
+      return ElevatedButton(
+        onPressed: () {
+          if (providertrue!.isupdate) {
+            providertrue!.calleditdetails();
+          } else {
             DetailsModel callDetials = DetailsModel(
-                img: providertrue!.imgpath!,
+                img: providertrue!.imgpath,
                 name: providertrue!.txtname.text,
                 num: providertrue!.txtnum.text,
                 chats: providertrue!.txtchat.text,
                 dateTime: providertrue!.dateTime,
                 timeOfDay: providertrue!.timeOfDay);
             providerfalse!.calldetailsAdd(callDetials);
+          }
 
-            providertrue!.imgpath = null;
-            providertrue!.txtname =
-                TextEditingController(text: '');
-            providertrue!.txtnum =
-                TextEditingController(text: '');
-            providertrue!.txtchat =
-                TextEditingController(text: '');
-            providertrue!.dateTime = DateTime.now();
-            providertrue!.timeOfDay = TimeOfDay.now();
-          },
-          child: Text('Save'),
-        );
-      }else{
+          providertrue!.imgpath = null;
+          providertrue!.txtname = TextEditingController(text: '');
+          providertrue!.txtnum = TextEditingController(text: '');
+          providertrue!.txtchat = TextEditingController(text: '');
+          providertrue!.dateTime = DateTime.now();
+          providertrue!.timeOfDay = TimeOfDay.now();
+        },
+        child: Text('Save'),
+      );
+    } else {
       return CupertinoButton(
         child: Text('Save'),
         onPressed: () {
-          DetailsModel callDetials = DetailsModel(
-              img: providertrue!.imgpath!,
-              name: providertrue!.txtname.text,
-              num: providertrue!.txtnum.text,
-              chats: providertrue!.txtchat.text,
-              dateTime: providertrue!.dateTime,
-              timeOfDay: providertrue!.timeOfDay);
-          providerfalse!.calldetailsAdd(callDetials);
+          if (providertrue!.isupdate) {
+            providertrue!.calleditdetails();
+          } else {
+            DetailsModel callDetials = DetailsModel(
+                img: providertrue!.imgpath,
+                name: providertrue!.txtname.text,
+                num: providertrue!.txtnum.text,
+                chats: providertrue!.txtchat.text,
+                dateTime: providertrue!.dateTime,
+                timeOfDay: providertrue!.timeOfDay);
+            providerfalse!.calldetailsAdd(callDetials);
+          }
 
           providertrue!.imgpath = null;
-          providertrue!.txtname =
-              TextEditingController(text: '');
-          providertrue!.txtnum =
-              TextEditingController(text: '');
-          providertrue!.txtchat =
-              TextEditingController(text: '');
+          providertrue!.txtname = TextEditingController(text: '');
+          providertrue!.txtnum = TextEditingController(text: '');
+          providertrue!.txtchat = TextEditingController(text: '');
           providertrue!.dateTime = DateTime.now();
           providertrue!.timeOfDay = TimeOfDay.now();
         },

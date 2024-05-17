@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:plarfrom_converter_app/utils/global_variable.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/screen_provider.dart';
 import '../view/homescreen/componects/cupertino_textfiled.dart';
 import '../view/homescreen/componects/matrial_textfiled.dart';
 
@@ -10,6 +12,8 @@ class CallFieldAdaptive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    providerfalse = Provider.of<PlatfromProvider>(context, listen: false);
+    providertrue = Provider.of<PlatfromProvider>(context, listen: true);
     if(providertrue!.isios)
       {
         return Column(
