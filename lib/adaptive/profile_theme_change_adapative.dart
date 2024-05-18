@@ -16,7 +16,20 @@ class ProfileThemecChangeaAdapative extends StatelessWidget {
 
     if(providertrue!.isios)
       {
-        return Padding(
+        return SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+            child: Column(
+              children: [
+                ProfileAdaptive(),
+                ThemeModeScreen(),
+              ],
+            ),
+          ),
+        );
+      } else{
+      return SingleChildScrollView(
+        child: Padding(
           padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
           child: Column(
             children: [
@@ -24,15 +37,6 @@ class ProfileThemecChangeaAdapative extends StatelessWidget {
               ThemeModeScreen(),
             ],
           ),
-        );
-      } else{
-      return Padding(
-        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-        child: Column(
-          children: [
-            ProfileAdaptive(),
-            ThemeModeScreen(),
-          ],
         ),
       );
     }

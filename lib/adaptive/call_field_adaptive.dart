@@ -55,30 +55,18 @@ class CallFieldAdaptive extends StatelessWidget {
          key: providertrue!.globalKey,
          child: Column(
            children: [
-             SizedBox(
-               height: 20,
-             ),
              cupertinotextfild(
                  iconData: CupertinoIcons.person,
                  textEditingController: providertrue!.txtname,
                  name: 'Full Name',context: context),
-             SizedBox(
-               height: 20,
-             ),
              cupertinotextfild(
                  iconData: CupertinoIcons.phone,
                  textEditingController: providertrue!.txtnum,
                  name: 'Phone Number',context: context,textInputType: TextInputType.number,),
-             SizedBox(
-               height: 20,
-             ),
              cupertinotextfild(
                  iconData: CupertinoIcons.chat_bubble_text,
                  textEditingController: providertrue!.txtchat,
                  name: 'Chat Conversation',context: context),
-             SizedBox(
-               height: 20,
-             ),
            ],
          ),
        );

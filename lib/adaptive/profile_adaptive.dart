@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 
 import '../provider/screen_provider.dart';
 import '../utils/global_variable.dart';
+import '../view/homescreen/componects/cupertino_textfiled.dart';
+import '../view/homescreen/componects/matrial_textfiled.dart';
 
 class ProfileAdaptive extends StatelessWidget {
   const ProfileAdaptive({super.key});
@@ -53,19 +55,18 @@ class ProfileAdaptive extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  TextFormField(
-                    decoration: InputDecoration.collapsed(
-                        hintText: 'Enter your Name...'),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                      decoration: InputDecoration.collapsed(
-                          hintText: 'Enter your Bio..')),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  call_details_field(
+                      label: 'Your Name..',
+                      textInputType: TextInputType.name,
+                      iconData: Icons.person_outline,
+                      textEditingController: profileProvidertrue!.txtfullname),
+
+                  call_details_field(
+                      label: 'Your Bio..',
+                      textInputType: TextInputType.name,
+                      iconData: Icons.chat,
+                      textEditingController: profileProvidertrue!.txtbio),
+
                   Row(
                     mainAxisAlignment:
                     MainAxisAlignment.spaceEvenly,
@@ -118,29 +119,14 @@ class ProfileAdaptive extends StatelessWidget {
                               radius: 60,
                               backgroundImage: AssetImage('asset/img/camera.png')),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        CupertinoTextField(
-                          padding: EdgeInsets.all(10),
-                          placeholder: 'Enter Your Name..',
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        CupertinoTextField(
-                          padding: EdgeInsets.all(10),
-                          placeholder: 'Enter Your Bio..',
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        cupertinotextfild(
+                          iconData: CupertinoIcons.person,
+                          textEditingController: profileProvidertrue!.txtfullname,
+                          name: 'Your Name..',context: context,textInputType: TextInputType.text,),
+                        cupertinotextfild(
+                          iconData: CupertinoIcons.chat_bubble_text,
+                          textEditingController: profileProvidertrue!.txtbio,
+                          name: 'Your Bio..',context: context,textInputType: TextInputType.text,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
