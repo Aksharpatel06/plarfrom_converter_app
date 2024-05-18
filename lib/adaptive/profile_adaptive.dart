@@ -75,7 +75,9 @@ class ProfileAdaptive extends StatelessWidget {
                           onPressed: () {},
                           child: Text('Save')),
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            profileProviderfalse!.clearprofile();
+                          },
                           child: Text('Clear')),
                     ],
                   )
@@ -136,7 +138,9 @@ class ProfileAdaptive extends StatelessWidget {
                             ),
                             CupertinoButton(
                               child: Text('Clear'),
-                              onPressed: () {},
+                              onPressed: () {
+                                profileProviderfalse!.clearprofile();
+                              },
                             )
                           ],
                         )

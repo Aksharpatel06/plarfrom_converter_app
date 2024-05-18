@@ -32,4 +32,17 @@ class ProfileProvider extends ChangeNotifier{
     isProfile = value;
     notifyListeners();
   }
+
+  void saveprofile()
+  {
+
+  }
+
+  void clearprofile()
+  {
+    profileimgpath = null;
+    txtfullname=TextEditingController(text: '');
+    txtbio=TextEditingController(text: '');
+    notifyListeners();
+  }
 }
