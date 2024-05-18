@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:plarfrom_converter_app/adaptive/themeadaptive.dart';
 import 'package:provider/provider.dart';
 
+import '../../adaptive/call_details.dart';
 import '../../adaptive/call_details_add_adaptive.dart';
-import '../../adaptive/call_field_adaptive.dart';
-import '../../adaptive/call_image_adaptive.dart';
-import '../../adaptive/call_save_adaptive.dart';
 import '../../adaptive/chats_details.dart';
-import '../../adaptive/date_picker_adaptive.dart';
 import '../../adaptive/profile_adaptive.dart';
-import '../../adaptive/time_picker_adaptive.dart';
+import '../../adaptive/profile_theme_change_adapative.dart';
 import '../../provider/screen_provider.dart';
 import '../../utils/global_variable.dart';
 
@@ -50,39 +47,13 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          body: SafeArea(
+          body: const SafeArea(
             child: TabBarView(
               children: [
-                const CallDetailsAddScreenAdapatiev(),
-                const ChatsDetailsAdaptive(),
-                Column(
-                  children: List.generate(
-                    providertrue!.callList.length,
-                    (index) => ListTile(
-                      leading: providertrue!.callList[index].img == null
-                          ? const CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('asset/img/camera.png'),
-                            )
-                          : CircleAvatar(
-                              backgroundImage:
-                                  FileImage(providertrue!.callList[index].img!),
-                            ),
-                      title: Text(providertrue!.callList[index].name),
-                      subtitle: Text(providertrue!.callList[index].chats),
-                      trailing: const Icon(Icons.call),
-                    ),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-                  child: Column(
-                    children: [
-                      ProfileAdaptive(),
-                      ThemeModeScreen(),
-                    ],
-                  ),
-                ),
+                CallDetailsAddScreenAdapatiev(),
+                ChatsDetailsAdaptive(),
+                CallDetails(),
+                ProfileThemecChangeaAdapative(),
               ],
             ),
           ),
@@ -126,35 +97,9 @@ class HomeScreen extends StatelessWidget {
               } else if (index == 1) {
                 return const ChatsDetailsAdaptive();
               } else if (index == 2) {
-                return Column(
-                  children: List.generate(
-                    providertrue!.callList.length,
-                    (index) => CupertinoListTile(
-                      leading: providertrue!.callList[index].img == null
-                          ? const CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('asset/img/camera.png'),
-                            )
-                          : CircleAvatar(
-                              backgroundImage:
-                                  FileImage(providertrue!.callList[index].img!),
-                            ),
-                      title: Text(providertrue!.callList[index].name),
-                      subtitle: Text(providertrue!.callList[index].chats),
-                      trailing: const Icon(CupertinoIcons.phone),
-                    ),
-                  ),
-                );
+                return const CallDetails();
               } else if (index == 3) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-                  child: Column(
-                    children: [
-                      ProfileAdaptive(),
-                      ThemeModeScreen(),
-                    ],
-                  ),
-                );
+                return const ProfileThemecChangeaAdapative() ;
               } else {
                 return const Text('hello');
               }

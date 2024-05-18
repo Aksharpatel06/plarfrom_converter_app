@@ -16,25 +16,27 @@ class CallSaveAdaptive extends StatelessWidget {
     if (providertrue!.isios) {
       return ElevatedButton(
         onPressed: () {
-          if (providertrue!.isupdate) {
-            providertrue!.calleditdetails();
-          } else {
-            DetailsModel callDetials = DetailsModel(
-                img: providertrue!.imgpath,
-                name: providertrue!.txtname.text,
-                num: providertrue!.txtnum.text,
-                chats: providertrue!.txtchat.text,
-                dateTime: providertrue!.dateTime,
-                timeOfDay: providertrue!.timeOfDay);
-            providerfalse!.calldetailsAdd(callDetials);
+          if(providertrue!.globalKey.currentState?.validate() == true)
+          {
+            if (providertrue!.isupdate) {
+              providertrue!.calleditdetails();
+            } else {
+              DetailsModel callDetials = DetailsModel(
+                  img: providertrue!.imgpath,
+                  name: providertrue!.txtname.text,
+                  num: providertrue!.txtnum.text,
+                  chats: providertrue!.txtchat.text,
+                  dateTime: providertrue!.dateTime,
+                  timeOfDay: providertrue!.timeOfDay);
+              providerfalse!.calldetailsAdd(callDetials);
+            }
+            providertrue!.imgpath = null;
+            providertrue!.txtname = TextEditingController(text: '');
+            providertrue!.txtnum = TextEditingController(text: '');
+            providertrue!.txtchat = TextEditingController(text: '');
+            providertrue!.dateTime = DateTime.now();
+            providertrue!.timeOfDay = TimeOfDay.now();
           }
-
-          providertrue!.imgpath = null;
-          providertrue!.txtname = TextEditingController(text: '');
-          providertrue!.txtnum = TextEditingController(text: '');
-          providertrue!.txtchat = TextEditingController(text: '');
-          providertrue!.dateTime = DateTime.now();
-          providertrue!.timeOfDay = TimeOfDay.now();
         },
         child: Text('Save'),
       );
@@ -42,25 +44,27 @@ class CallSaveAdaptive extends StatelessWidget {
       return CupertinoButton(
         child: Text('Save'),
         onPressed: () {
-          if (providertrue!.isupdate) {
-            providertrue!.calleditdetails();
-          } else {
-            DetailsModel callDetials = DetailsModel(
-                img: providertrue!.imgpath,
-                name: providertrue!.txtname.text,
-                num: providertrue!.txtnum.text,
-                chats: providertrue!.txtchat.text,
-                dateTime: providertrue!.dateTime,
-                timeOfDay: providertrue!.timeOfDay);
-            providerfalse!.calldetailsAdd(callDetials);
-          }
-
-          providertrue!.imgpath = null;
-          providertrue!.txtname = TextEditingController(text: '');
-          providertrue!.txtnum = TextEditingController(text: '');
-          providertrue!.txtchat = TextEditingController(text: '');
-          providertrue!.dateTime = DateTime.now();
-          providertrue!.timeOfDay = TimeOfDay.now();
+          if(providertrue!.globalKey.currentState?.validate() == true)
+            {
+              if (providertrue!.isupdate) {
+                providertrue!.calleditdetails();
+              } else {
+                DetailsModel callDetials = DetailsModel(
+                    img: providertrue!.imgpath,
+                    name: providertrue!.txtname.text,
+                    num: providertrue!.txtnum.text,
+                    chats: providertrue!.txtchat.text,
+                    dateTime: providertrue!.dateTime,
+                    timeOfDay: providertrue!.timeOfDay);
+                providerfalse!.calldetailsAdd(callDetials);
+              }
+              providertrue!.imgpath = null;
+              providertrue!.txtname = TextEditingController(text: '');
+              providertrue!.txtnum = TextEditingController(text: '');
+              providertrue!.txtchat = TextEditingController(text: '');
+              providertrue!.dateTime = DateTime.now();
+              providertrue!.timeOfDay = TimeOfDay.now();
+            }
         },
       );
     }

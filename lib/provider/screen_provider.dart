@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -18,6 +19,8 @@ class PlatfromProvider extends ChangeNotifier {
   File? profileimgpath;
 
   List<DetailsModel> callList = [];
+
+  GlobalKey<FormState> globalKey=GlobalKey<FormState>();
 
   TextEditingController txtname = TextEditingController(text: 'Zimil');
   TextEditingController txtnum = TextEditingController(text: '9562596255');
@@ -54,11 +57,18 @@ class PlatfromProvider extends ChangeNotifier {
   }
 
   void removedetails(int index) {
-    callList.removeAt(index);
+    if (index >= 0 && index < callList.length) {
+      callList.removeAt(index);
+      print(callList.length);
+    }
+  }
+
+  void back()
+  {
     notifyListeners();
   }
 
-  void editdetails({required int detailsIndex, int? index}) {
+  void editdetails({required int detailsIndex}) {
     if (detailsIndex >= 0 && detailsIndex < callList.length) {
       updateindex = detailsIndex;
       isupdate = true;

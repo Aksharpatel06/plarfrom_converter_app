@@ -19,8 +19,8 @@ class ChatsDetailsAdaptive extends StatelessWidget {
           children: List.generate(
             providertrue!.callList.length,
                 (detailsindex) => ListTile(
-              onTap: () {
-                showDialog(context: context, builder: (context) {
+              onTap: () async {
+                await showDialog(context: context, builder: (context) {
                   return AlertDialog(
                     title: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,6 +49,7 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                           InkWell(child: const Icon(CupertinoIcons.delete), onTap: () {
                             providerfalse!.removedetails(detailsindex);
                             Navigator.of(context).pop();
+                            Future.delayed(Duration(milliseconds: 300), () => providerfalse!.back(),);
                           },),
                         ],
                       ),
@@ -82,8 +83,8 @@ class ChatsDetailsAdaptive extends StatelessWidget {
               children: List.generate(
                 providertrue!.callList.length,
                     (detailsindex) => CupertinoListTile(
-                  onTap: () {
-                    showCupertinoModalPopup(context: context, builder: (context) {
+                  onTap: () async {
+                    await showCupertinoModalPopup(context: context, builder: (context) {
                       return CupertinoAlertDialog(
                         content: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,6 +113,7 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                               CupertinoButton(child: const Icon(CupertinoIcons.delete), onPressed: () {
                                 providerfalse!.removedetails(detailsindex);
                                 Navigator.of(context).pop();
+                                Future.delayed(Duration(milliseconds: 300), () => providerfalse!.back(),);
                               },),
                             ],
                           ),
