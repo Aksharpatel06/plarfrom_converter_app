@@ -8,6 +8,7 @@ import '../../adaptive/chats_details.dart';
 import '../../adaptive/profile_theme_change_adapative.dart';
 import '../../provider/screen_provider.dart';
 import '../../utils/global_variable.dart';
+import '../../utils/tab_view_global_list.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -50,9 +51,16 @@ class HomeScreen extends StatelessWidget {
           body: const SafeArea(
             child: TabBarView(
               children: [
+                //USER CALL AND CHATS INPUT
                 CallDetailsAddScreenAdapatiev(),
+
+                //CHATS DETAILS
                 ChatsDetailsAdaptive(),
+
+                //CALL DETAILS
                 CallDetails(),
+
+                //PROFILE VIEW
                 ProfileThemecChangeaAdapative(),
               ],
             ),
@@ -75,37 +83,11 @@ class HomeScreen extends StatelessWidget {
             tabBar: CupertinoTabBar(
                 onTap: (value) => providerfalse!.changetabbar(value),
                 currentIndex: providertrue!.tabbarindex,
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(CupertinoIcons.person_badge_plus),
-                  ),
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        CupertinoIcons.chat_bubble,
-                        size: 25,
-                      ),
-                      label: 'CHATS'),
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        CupertinoIcons.phone,
-                        size: 25,
-                      ),
-                      label: 'CALLS'),
-                  BottomNavigationBarItem(
-                      icon: Icon(CupertinoIcons.settings), label: 'SETTINGS'),
-                ]),
+                items: <BottomNavigationBarItem>[
+                  ...tabItemList,
+                ],),
             tabBuilder: (context, index) {
-              if (index == 0) {
-                return const CallDetailsAddScreenAdapatiev();
-              } else if (index == 1) {
-                return const ChatsDetailsAdaptive();
-              } else if (index == 2) {
-                return const CallDetails();
-              } else if (index == 3) {
-                return const ProfileThemecChangeaAdapative();
-              } else {
-                return const Text('hello');
-              }
+              return tabList[index];
             },
           ),
         ),
