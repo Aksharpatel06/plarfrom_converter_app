@@ -24,7 +24,7 @@ class PlatfromProvider extends ChangeNotifier {
   GlobalKey<FormState> globalKey=GlobalKey<FormState>();
 
   TextEditingController txtname = TextEditingController(text: 'Zimil');
-  TextEditingController txtnum = TextEditingController(text: '9562596255');
+  TextEditingController txtnum = TextEditingController(text: '7043536897');
   TextEditingController txtchat = TextEditingController(text: 'hello brother');
 
   void changePlatfrom(bool value) {
@@ -34,6 +34,7 @@ class PlatfromProvider extends ChangeNotifier {
   void changetabbar(int value)
   {
     tabbarindex = value;
+    notifyListeners();
   }
 
   void changedate(DateTime dateTime) {

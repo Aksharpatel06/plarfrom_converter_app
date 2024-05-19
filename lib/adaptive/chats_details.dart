@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -56,10 +58,8 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                                     providerfalse!.editdetails(
                                         detailsIndex: detailsindex);
                                     Navigator.pop(context);
-                                    Future.delayed(
-                                      const Duration(seconds: 1),
-                                          () => providerfalse!.changetabbar(0),
-                                    );
+                                    providerfalse!.changetabbar(0);
+                                    log(providertrue!.tabbarindex);
                                   },
                                 ),
                                 InkWell(

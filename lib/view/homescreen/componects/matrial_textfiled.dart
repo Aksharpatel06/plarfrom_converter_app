@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:plarfrom_converter_app/utils/global_variable.dart';
-import 'package:provider/provider.dart';
 
-import '../../../provider/screen_provider.dart';
 
 Widget call_details_field(
     {String? label,
