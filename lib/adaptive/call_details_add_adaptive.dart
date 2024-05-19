@@ -44,6 +44,9 @@ class CallDetailsAddScreenAdapatiev extends StatelessWidget {
             children: [
               CallImageAdaptive(),
               CallFieldAdaptive(),
+              SizedBox(
+                height: 20,
+              ),
               DatePickerAdaptive(),
               SizedBox(
                 height: 20,

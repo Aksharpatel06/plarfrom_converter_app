@@ -15,7 +15,7 @@ class ProfileProvider extends ChangeNotifier{
   TextEditingController txtbio= TextEditingController();
 
   void profileImage() async {
-    XFile? images = await picker.pickImage(source: ImageSource.camera);
+    XFile? images = await picker.pickImage(source: ImageSource.gallery);
     profileimgpath = File(images!.path);
     notifyListeners();
   }

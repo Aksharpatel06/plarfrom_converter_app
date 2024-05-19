@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(
         create: (context) => PlatfromProvider(),
       ),
-      ChangeNotifierProvider(create: (context) => ProfileProvider(),)
-    ], child: AdaptiveWidget());
+      ChangeNotifierProvider(
+        create: (context) => ProfileProvider(),
+      )
+    ], child: const AdaptiveWidget());
   }
 }

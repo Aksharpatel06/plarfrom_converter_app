@@ -119,15 +119,17 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                             children: [
                               providertrue!.callList[detailsindex].img == null
                                   ? const CircleAvatar(
+                                radius: 50,
                                       backgroundImage:
                                           AssetImage('asset/img/camera.png'),
                                     )
                                   : CircleAvatar(
+                                radius: 50,
                                       backgroundImage: FileImage(providertrue!
                                           .callList[detailsindex].img!),
                                     ),
-                              Text(providertrue!.callList[detailsindex].name),
-                              Text(providertrue!.callList[detailsindex].chats),
+                              Text(providertrue!.callList[detailsindex].name,style: TextStyle(fontSize: 20,)),
+                              Text(providertrue!.callList[detailsindex].chats,style: TextStyle(fontSize: 15),)
                             ],
                           ),
                           actions: [
