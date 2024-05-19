@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:plarfrom_converter_app/adaptive/themeadaptive.dart';
 import 'package:provider/provider.dart';
 
 import '../../adaptive/call_details.dart';
 import '../../adaptive/call_details_add_adaptive.dart';
 import '../../adaptive/chats_details.dart';
-import '../../adaptive/profile_adaptive.dart';
 import '../../adaptive/profile_theme_change_adapative.dart';
 import '../../provider/screen_provider.dart';
 import '../../utils/global_variable.dart';
@@ -21,6 +19,7 @@ class HomeScreen extends StatelessWidget {
     if (providertrue!.isios) {
       return DefaultTabController(
         length: 4,
+        initialIndex: providertrue!.tabbarindex,
         child: Scaffold(
           appBar: AppBar(
             title: const Text('Platfrom Converter'),
@@ -32,8 +31,9 @@ class HomeScreen extends StatelessWidget {
                 },
               )
             ],
-            bottom: const TabBar(
-              tabs: [
+            bottom: TabBar(
+              onTap: (value) => providerfalse!.changetabbar(value),
+              tabs: const [
                 Tab(
                   icon: Icon(Icons.person_add_alt),
                 ),
@@ -72,25 +72,28 @@ class HomeScreen extends StatelessWidget {
         ),
         child: SafeArea(
           child: CupertinoTabScaffold(
-            tabBar: CupertinoTabBar(items: const [
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.person_badge_plus),
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(
-                    CupertinoIcons.chat_bubble,
-                    size: 25,
+            tabBar: CupertinoTabBar(
+                onTap: (value) => providerfalse!.changetabbar(value),
+                currentIndex: providertrue!.tabbarindex,
+                items: const [
+                  BottomNavigationBarItem(
+                    icon: Icon(CupertinoIcons.person_badge_plus),
                   ),
-                  label: 'CHATS'),
-              BottomNavigationBarItem(
-                  icon: Icon(
-                    CupertinoIcons.phone,
-                    size: 25,
-                  ),
-                  label: 'CALLS'),
-              BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.settings), label: 'SETTINGS'),
-            ]),
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        CupertinoIcons.chat_bubble,
+                        size: 25,
+                      ),
+                      label: 'CHATS'),
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        CupertinoIcons.phone,
+                        size: 25,
+                      ),
+                      label: 'CALLS'),
+                  BottomNavigationBarItem(
+                      icon: Icon(CupertinoIcons.settings), label: 'SETTINGS'),
+                ]),
             tabBuilder: (context, index) {
               if (index == 0) {
                 return const CallDetailsAddScreenAdapatiev();
@@ -99,7 +102,7 @@ class HomeScreen extends StatelessWidget {
               } else if (index == 2) {
                 return const CallDetails();
               } else if (index == 3) {
-                return const ProfileThemecChangeaAdapative() ;
+                return const ProfileThemecChangeaAdapative();
               } else {
                 return const Text('hello');
               }

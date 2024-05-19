@@ -10,6 +10,7 @@ class PlatfromProvider extends ChangeNotifier {
   bool isios = false;
   bool isupdate = false;
   int updateindex = 0;
+  int tabbarindex=0;
 
   DateTime dateTime = DateTime.now();
   TimeOfDay timeOfDay = TimeOfDay.now();
@@ -29,6 +30,10 @@ class PlatfromProvider extends ChangeNotifier {
   void changePlatfrom(bool value) {
     isios = value;
     notifyListeners();
+  }
+  void changetabbar(int value)
+  {
+    tabbarindex = value;
   }
 
   void changedate(DateTime dateTime) {
@@ -80,6 +85,12 @@ class PlatfromProvider extends ChangeNotifier {
       timeOfDay = callList[detailsIndex].timeOfDay;
       notifyListeners();
     }
+  }
+
+  void repleshment(int index)
+  {
+    index=0;
+    notifyListeners();
   }
 
   void calleditdetails() {

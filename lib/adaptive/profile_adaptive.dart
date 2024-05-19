@@ -22,9 +22,9 @@ class ProfileAdaptive extends StatelessWidget {
       return Column(
         children: [
           ListTile(
-            leading: Icon(Icons.person_outline),
-            title: Text('Profile'),
-            subtitle: Text('Update Profile Data'),
+            leading: const Icon(Icons.person_outline),
+            title: const Text('Profile'),
+            subtitle: const Text('Update Profile Data'),
             trailing: Switch(
               value: profileProvidertrue!.isProfile,
               onChanged: (value) {
@@ -48,11 +48,11 @@ class ProfileAdaptive extends StatelessWidget {
                         ? CircleAvatar(
                         radius: 60,
                         backgroundImage: FileImage(profileProvidertrue!.profileimgpath!))
-                        : CircleAvatar(
+                        : const CircleAvatar(
                         radius: 60,
                         backgroundImage: AssetImage('asset/img/camera.png')),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   call_details_field(
@@ -73,12 +73,12 @@ class ProfileAdaptive extends StatelessWidget {
                     children: [
                       ElevatedButton(
                           onPressed: () {},
-                          child: Text('Save')),
+                          child: const Text('Save')),
                       ElevatedButton(
                           onPressed: () {
                             profileProviderfalse!.clearprofile();
                           },
-                          child: Text('Clear')),
+                          child: const Text('Clear')),
                     ],
                   )
                 ],
@@ -92,9 +92,9 @@ class ProfileAdaptive extends StatelessWidget {
       return Column(
         children: [
           CupertinoListTile(
-            leading: Icon(CupertinoIcons.person),
-            title: Text('Profile'),
-            subtitle: Text('Update Profile Data'),
+            leading: const Icon(CupertinoIcons.person),
+            title: const Text('Profile'),
+            subtitle: const Text('Update Profile Data'),
             trailing: CupertinoSwitch(
               value: profileProvidertrue!.isProfile,
               onChanged: (value) {
@@ -117,7 +117,7 @@ class ProfileAdaptive extends StatelessWidget {
                           child: (profileProvidertrue!.profileimgpath != null)
                               ? CircleAvatar(
                               radius: 60, backgroundImage: FileImage(profileProvidertrue!.profileimgpath!))
-                              : CircleAvatar(
+                              : const CircleAvatar(
                               radius: 60,
                               backgroundImage: AssetImage('asset/img/camera.png')),
                         ),
@@ -133,11 +133,11 @@ class ProfileAdaptive extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             CupertinoButton(
-                              child: Text('Save'),
+                              child: const Text('Save'),
                               onPressed: () {},
                             ),
                             CupertinoButton(
-                              child: Text('Clear'),
+                              child: const Text('Clear'),
                               onPressed: () {
                                 profileProviderfalse!.clearprofile();
                               },

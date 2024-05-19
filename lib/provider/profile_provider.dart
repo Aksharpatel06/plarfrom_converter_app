@@ -35,7 +35,6 @@ class ProfileProvider extends ChangeNotifier{
 
   void saveprofile()
   {
-
   }
 
   void clearprofile()
