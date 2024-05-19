@@ -57,7 +57,7 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                                         detailsIndex: detailsindex);
                                     Navigator.pop(context);
                                     Future.delayed(
-                                      Duration(seconds: 1),
+                                      const Duration(seconds: 1),
                                           () => providerfalse!.changetabbar(0),
                                     );
                                   },
