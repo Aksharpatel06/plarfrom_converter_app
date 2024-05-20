@@ -49,6 +49,7 @@ class PlatfromProvider extends ChangeNotifier {
 
   void changeCupertinotime(DateTime dateTime) {
     timeOfDay = TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
+    notifyListeners();
   }
 
   void setImage() async {
