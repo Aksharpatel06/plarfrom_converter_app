@@ -18,7 +18,7 @@ class TimePickerAdaptive extends StatelessWidget {
     profileProvidertrue = Provider.of<ProfileProvider>(context, listen: true);
     if (providertrue!.isios) {
       return ListTile(
-        leading: Icon(Icons.access_time),
+        leading: const Icon(Icons.access_time),
         onTap: () async {
           TimeOfDay timeOfDay = await showTimePicker(
                 context: context,
@@ -27,14 +27,14 @@ class TimePickerAdaptive extends StatelessWidget {
               TimeOfDay.now();
           providerfalse!.changetime(timeOfDay);
         },
-        title: Text('Pick Time'),
+        title: const Text('Pick Time'),
         trailing: Text(
             "${providertrue!.timeOfDay.hour} : ${providertrue!.timeOfDay.minute}"),
       );
     } else {
       return CupertinoListTile(
         padding: EdgeInsets.zero,
-        leading: Icon(CupertinoIcons.time),
+        leading: const Icon(CupertinoIcons.time),
         onTap: () {
           showCupertinoModalPopup(
             context: context,
@@ -55,7 +55,7 @@ class TimePickerAdaptive extends StatelessWidget {
             },
           );
         },
-        title: Text('Pick Time'),
+        title: const Text('Pick Time'),
         trailing: Text(
             "${providertrue!.timeOfDay.hour} - ${providertrue!.timeOfDay.minute}"),
       );
