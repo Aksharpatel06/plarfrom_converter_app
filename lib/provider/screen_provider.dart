@@ -67,10 +67,6 @@ class PlatfromProvider extends ChangeNotifier {
       callList.removeAt(index);
       print(callList.length);
     }
-  }
-
-  void back()
-  {
     notifyListeners();
   }
 

@@ -23,14 +23,18 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                 providertrue!.callList.length,
                 (detailsindex) => ListTile(
                   onTap: () async {
-                    await showDialog(
+                    var img = providertrue!
+                        .callList[detailsindex].img;
+                    var name = providertrue!.callList[detailsindex].name;
+                    var chats = providertrue!.callList[detailsindex].chats;
+                     showDialog(
                       context: context,
                       builder: (context) {
                         return AlertDialog(
                           title: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              providertrue!.callList[detailsindex].img == null
+                              img == null
                                   ? const CircleAvatar(
                                       radius: 50,
                                       backgroundImage:
@@ -38,12 +42,11 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                                     )
                                   : CircleAvatar(
                                       radius: 50,
-                                      backgroundImage: FileImage(providertrue!
-                                          .callList[detailsindex].img!),
+                                      backgroundImage: FileImage(img),
                                     ),
-                              Text(providertrue!.callList[detailsindex].name),
+                              Text(name),
                               Text(
-                                providertrue!.callList[detailsindex].chats,
+                                chats,
                                 style: TextStyle(fontSize: 15),
                               ),
                             ],
@@ -68,10 +71,6 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                                   onTap: () {
                                     providerfalse!.removedetails(detailsindex);
                                     Navigator.of(context).pop();
-                                    Future.delayed(
-                                      Duration(milliseconds: 300),
-                                      () => providerfalse!.back(),
-                                    );
                                   },
                                 ),
                                 InkWell(
@@ -109,15 +108,19 @@ class ChatsDetailsAdaptive extends StatelessWidget {
               children: List.generate(
                 providertrue!.callList.length,
                 (detailsindex) => CupertinoListTile(
-                  onTap: () async {
-                    await showCupertinoModalPopup(
+                  onTap: ()  {
+                    var img = providertrue!
+                        .callList[detailsindex].img;
+                    var name = providertrue!.callList[detailsindex].name;
+                    var chats = providertrue!.callList[detailsindex].chats;
+                    showCupertinoModalPopup(
                       context: context,
                       builder: (context) {
                         return CupertinoAlertDialog(
                           content: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              providertrue!.callList[detailsindex].img == null
+                              img == null
                                   ? const CircleAvatar(
                                 radius: 50,
                                       backgroundImage:
@@ -125,11 +128,10 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                                     )
                                   : CircleAvatar(
                                 radius: 50,
-                                      backgroundImage: FileImage(providertrue!
-                                          .callList[detailsindex].img!),
+                                      backgroundImage: FileImage(img),
                                     ),
-                              Text(providertrue!.callList[detailsindex].name,style: TextStyle(fontSize: 20,)),
-                              Text(providertrue!.callList[detailsindex].chats,style: TextStyle(fontSize: 15),)
+                              Text(name,style: TextStyle(fontSize: 20,)),
+                              Text(chats,style: TextStyle(fontSize: 15),)
                             ],
                           ),
                           actions: [
@@ -150,10 +152,6 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                                   onPressed: () {
                                     providerfalse!.removedetails(detailsindex);
                                     Navigator.of(context).pop();
-                                    Future.delayed(
-                                      Duration(milliseconds: 300),
-                                      () => providerfalse!.back(),
-                                    );
                                   },
                                 ),
                               ],
