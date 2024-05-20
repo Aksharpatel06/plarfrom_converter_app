@@ -13,7 +13,7 @@ Widget call_details_field(
     child: Row(
       children: [
         Icon(iconData),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Expanded(
@@ -40,7 +40,7 @@ Widget call_details_field(
               return null;
             },
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 8,vertical: 4),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 8,vertical: 4),
                 hintText: label,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(3),
