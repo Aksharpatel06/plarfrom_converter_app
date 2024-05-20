@@ -19,7 +19,7 @@ class DatePickerAdaptive extends StatelessWidget {
     if(providertrue!.isios)
       {
         return ListTile(
-          leading: Icon(Icons.calendar_month),
+          leading: const Icon(Icons.calendar_month),
           onTap: () async {
             DateTime dateTime = await showDatePicker(
               context: context,
@@ -29,7 +29,7 @@ class DatePickerAdaptive extends StatelessWidget {
                 DateTime.now();
             providerfalse!.changedate(dateTime);
           },
-          title: Text('Pick Date'),
+          title: const Text('Pick Date'),
           trailing: Text(
               "${providertrue!.dateTime.day} - ${providertrue!.dateTime.month} - ${providertrue!.dateTime.year}"),
         );
@@ -37,7 +37,7 @@ class DatePickerAdaptive extends StatelessWidget {
         {
           return CupertinoListTile(
             padding: EdgeInsets.zero,
-            leading: Icon(CupertinoIcons.calendar),
+            leading: const Icon(CupertinoIcons.calendar),
             onTap: () {
               showCupertinoModalPopup(
                 context: context,
@@ -59,7 +59,7 @@ class DatePickerAdaptive extends StatelessWidget {
                 },
               );
             },
-            title: Text('Pick Date'),
+            title: const Text('Pick Date'),
             trailing: Text(
                 "${providertrue!.dateTime.day} - ${providertrue!.dateTime.month} - ${providertrue!.dateTime.year}"),
           );

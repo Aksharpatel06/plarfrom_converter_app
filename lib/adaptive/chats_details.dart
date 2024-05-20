@@ -47,7 +47,7 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                               Text(name),
                               Text(
                                 chats,
-                                style: TextStyle(fontSize: 15),
+                                style: const TextStyle(fontSize: 15),
                               ),
                             ],
                           ),
@@ -130,8 +130,8 @@ class ChatsDetailsAdaptive extends StatelessWidget {
                                 radius: 50,
                                       backgroundImage: FileImage(img),
                                     ),
-                              Text(name,style: TextStyle(fontSize: 20,)),
-                              Text(chats,style: TextStyle(fontSize: 15),)
+                              Text(name,style: const TextStyle(fontSize: 20,)),
+                              Text(chats,style: const TextStyle(fontSize: 15),)
                             ],
                           ),
                           actions: [

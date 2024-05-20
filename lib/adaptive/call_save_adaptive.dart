@@ -38,11 +38,11 @@ class CallSaveAdaptive extends StatelessWidget {
             providertrue!.timeOfDay = TimeOfDay.now();
           }
         },
-        child: Text('Save'),
+        child: const Text('Save'),
       );
     } else {
       return CupertinoButton(
-        child: Text('Save'),
+        child: const Text('Save'),
         onPressed: () {
           if(providertrue!.globalKey.currentState?.validate() == true)
             {

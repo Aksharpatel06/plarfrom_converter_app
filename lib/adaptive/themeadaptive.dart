@@ -18,9 +18,9 @@ class ThemeModeScreen extends StatelessWidget {
     profileProvidertrue = Provider.of<ProfileProvider>(context, listen: true);
     if (providertrue!.isios) {
       return ListTile(
-        leading: Icon(Icons.sunny),
-        title: Text('Theme'),
-        subtitle: Text('Change Theme'),
+        leading: const Icon(Icons.sunny),
+        title: const Text('Theme'),
+        subtitle: const Text('Change Theme'),
         trailing: Switch(
           value: profileProvidertrue!.isdark,
           onChanged: (value) {
@@ -30,9 +30,9 @@ class ThemeModeScreen extends StatelessWidget {
       );
     } else {
       return CupertinoListTile(
-        leading: Icon(CupertinoIcons.sun_max),
-        title: Text('Theme'),
-        subtitle: Text('Change Theme'),
+        leading: const Icon(CupertinoIcons.sun_max),
+        title: const Text('Theme'),
+        subtitle: const Text('Change Theme'),
         trailing: CupertinoSwitch(
           value: profileProvidertrue!.isdark,
           onChanged: (value) {

@@ -21,7 +21,7 @@ class CallImageAdaptive extends StatelessWidget {
             ? CircleAvatar(
                 radius: 60,
                 backgroundImage: FileImage(providertrue!.imgpath!))
-            : CircleAvatar(
+            : const CircleAvatar(
                 radius: 60,
                 backgroundImage: AssetImage('asset/img/camera.png')),
       );
@@ -33,7 +33,7 @@ class CallImageAdaptive extends StatelessWidget {
         child: (providertrue!.imgpath != null)
             ? CircleAvatar(
                 radius: 60, backgroundImage: FileImage(providertrue!.imgpath!))
-            : CircleAvatar(
+            : const CircleAvatar(
                 radius: 60,
                 backgroundImage: AssetImage('asset/img/camera.png')),
       );

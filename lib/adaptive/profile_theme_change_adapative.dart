@@ -16,7 +16,7 @@ class ProfileThemecChangeaAdapative extends StatelessWidget {
 
     if(providertrue!.isios)
       {
-        return SingleChildScrollView(
+        return const SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
             child: Column(
@@ -28,7 +28,7 @@ class ProfileThemecChangeaAdapative extends StatelessWidget {
           ),
         );
       } else{
-      return SingleChildScrollView(
+      return const SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
           child: Column(

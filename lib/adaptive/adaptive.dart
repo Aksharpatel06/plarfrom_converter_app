@@ -25,15 +25,15 @@ class AdaptiveWidget extends StatelessWidget {
         theme: ThemeData(brightness: Brightness.light),
         darkTheme: ThemeData(brightness: Brightness.dark),
         themeMode: profileProvidertrue!.isdark ? ThemeMode.light : ThemeMode.dark,
-        home: HomeScreen(),
+        home: const HomeScreen(),
       );
     } else {
       return CupertinoApp(
         theme: profileProvidertrue!.isdark
-            ? CupertinoThemeData(brightness: Brightness.light)
-            : CupertinoThemeData(brightness: Brightness.dark),
+            ? const CupertinoThemeData(brightness: Brightness.light)
+            : const CupertinoThemeData(brightness: Brightness.dark),
         debugShowCheckedModeBanner: false,
-        home:  HomeScreen(),
+        home:  const HomeScreen(),
       );
     }
   }
